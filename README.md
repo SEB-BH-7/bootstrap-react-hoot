@@ -45,6 +45,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import 'bootstrap/dist/css/bootstrap.min.css' // Import Bootstrap styles
+import 'bootstrap' // Import Bootstrap scripts
 import 'bootstrap-icons/font/bootstrap-icons.css' // Import Bootstrap Icons
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -89,6 +90,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './styles/custom.scss' // Import customized Bootstrap styles
+import 'bootstrap' // Import Bootstrap scripts
 import 'bootstrap-icons/font/bootstrap-icons.css' // Import Bootstrap Icons
 
 ReactDOM.createRoot(document.getElementById('root')).render(
