@@ -202,4 +202,84 @@ Wrap the `<Link>` and `<button>` in a new `<div>` - give them all the new classN
 <img width="1920" height="1080" alt="Screenshot 2025-08-13 at 11 48 46 AM (2)" src="https://github.com/user-attachments/assets/f46ab3f3-9dc4-4060-b5aa-621471cbbca2" />
 
 
+### Bonus 2 - update the navbar
+
+```jsx
+// NavBar.jsx
+
+
+import { Link } from 'react-router-dom'
+
+const NavBar = (props) => {
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+      <div className="container-fluid">
+        {/* Brand */}
+        <Link className="navbar-brand" to="/">
+          Hoot App
+        </Link>
+
+        {/* Toggler for mobile */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Links */}
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav me-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/hoots">Hoots</Link>
+            </li>
+            {props.user && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/hoots/new">New Hoot</Link>
+              </li>
+            )}
+          </ul>
+
+          {/* Right side */}
+          <ul className="navbar-nav">
+            {props.user ? (
+              <>
+                <li className="nav-item navbar-text me-3">
+                    Welcome {props.user.username}
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/" onClick={props.handleSignOut}>
+                    Sign Out
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/sign-up">Sign Up</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/sign-in">Sign In</Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  )
+}
+
+export default NavBar
+```
+
+<img width="1920" height="1080" alt="Screenshot 2025-08-13 at 11 57 35 AM (2)" src="https://github.com/user-attachments/assets/8d6ec221-ef32-46ed-b9d3-be9fe0bb9e0b" />
 
