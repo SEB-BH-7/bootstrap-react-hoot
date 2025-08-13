@@ -109,11 +109,9 @@ const isOwner = hoot.author?._id === props.user?._id
 <img width="1920" height="1080" alt="Screenshot 2025-08-13 at 11 26 46 AM (2)" src="https://github.com/user-attachments/assets/e6eefea1-fa93-4276-baf6-100342a16490" />
 
 
----
-
 ### Style the header 
 
-Add new classNames to the `<p>` tags and `<h1>` tag.
+Add new classNames to the `<p>` tags and `<h1>` tag:
 
 ```jsx
       <header>
@@ -124,28 +122,20 @@ Add new classNames to the `<p>` tags and `<h1>` tag.
         </p>
 ```
 
+<img width="612" height="234" alt="Screenshot 2025-08-13 at 11 30 54 AM" src="https://github.com/user-attachments/assets/109fe289-678c-4857-81f4-561cdcdb5d38" />
+
 ---
 
-### Replace edit/delete block with Bootstrap buttons
+### Add Bootstrap button classes to the Edit and Delete
 
-```diff
-- {hoot.author._id === props.user._id && (
--   <>
--     <Link to={`/hoots/${hootId}/edit`}>Edit</Link>
--     <button onClick={() => props.handleDeleteHoot(hootId)}>Delete</button>
--   </>
-- )}
-+ {isOwner && (
-+   <div className="d-flex gap-2 mb-4">
-+     <Link to={`/hoots/${hootId}/edit`} className="btn btn-warning btn-sm">Edit</Link>
-+     <button
-+       className="btn btn-danger btn-sm"
-+       onClick={() => props.handleDeleteHoot(hootId)}
-+     >
-+       Delete
-+     </button>
-+   </div>
-+ )}
+Wrap the `<Link>` and `<button>` in a new `<div>` - give them all the new classNames listed below:
+
+```jsx
+        {hoot.author._id === props.user._id && (
+          <div className="d-flex gap-2 mb-4">
+            <Link className="btn btn-warning btn-sm" to={`/hoots/${hootId}/edit`}>Edit</Link>
+            <button className="btn btn-danger btn-sm" onClick={() => props.handleDeleteHoot(hootId)}>Delete</button>
+          </div>
 ```
 
 ---
