@@ -132,11 +132,13 @@ Wrap the `<Link>` and `<button>` in a new `<div>` - give them all the new classN
 
 ```jsx
         {hoot.author._id === props.user._id && (
-          <div className="d-flex gap-2 mb-4">
+          <div className="d-flex justify-content-center gap-2 mb-4">
             <Link className="btn btn-warning btn-sm" to={`/hoots/${hootId}/edit`}>Edit</Link>
             <button className="btn btn-danger btn-sm" onClick={() => props.handleDeleteHoot(hootId)}>Delete</button>
           </div>
 ```
+
+<img width="828" height="328" alt="Screenshot 2025-08-13 at 11 35 45 AM" src="https://github.com/user-attachments/assets/4f0cb234-768a-48d2-8a5a-5fdd9cbe88fd" />
 
 ---
 
