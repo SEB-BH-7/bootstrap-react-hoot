@@ -111,21 +111,17 @@ const isOwner = hoot.author?._id === props.user?._id
 
 ---
 
-### Style the header/meta
+### Style the header 
 
-```diff
-- <header>
--   <p>{hoot.category.toUpperCase()}</p>
--   <h1>{hoot.title}</h1>
--   <p>
--     {hoot.author.username} posted on {new Date(hoot.createdAt).toLocaleDateString()}
--   </p>
-+ <header>
-+   <p className="text-muted mb-1">{hoot.category?.toUpperCase()}</p>
-+   <h1 className="card-title">{hoot.title}</h1>
-+   <p className="text-secondary mb-3">
-+     {hoot.author.username} • {new Date(hoot.createdAt).toLocaleDateString()}
-+   </p>
+Add new classNames to the `<p>` tags and `<h1>` tag.
+
+```jsx
+      <header>
+        <p className="text-muted mb-1">{hoot.category.toUpperCase()}</p>
+        <h1 className="card-title">{hoot.title}</h1>
+        <p className="text-secondary mb-3">
+          {hoot.author.username} posted on {new Date(hoot.createdAt).toLocaleDateString()}
+        </p>
 ```
 
 ---
