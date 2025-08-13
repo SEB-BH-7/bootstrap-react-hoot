@@ -152,32 +152,35 @@ Wrap the `<Link>` and `<button>` in a new `<div>` - give them all the new classN
 <img width="906" height="712" alt="Screenshot 2025-08-13 at 11 40 18 AM" src="https://github.com/user-attachments/assets/5f91adec-9eaa-429d-9590-d86e9f64b94b" />
 
 
-### Improve empty state + render comments as a list group
+### Render comments as a list group
 
-```diff
-- {!hoot.comments.length && <p>There are no comments.</p>}
--
-- {hoot.comments.map((comment) => (
--   <p key={comment._id}>{comment.text}</p>
-- ))}
-
-+ {!hoot.comments?.length && (
-+   <p className="text-muted mt-3">There are no comments.</p>
-+ )}
-+ {hoot.comments?.length > 0 && (
-+   <ul className="list-group mt-3">
-+     {hoot.comments.map((comment) => (
-+       <li key={comment._id} className="list-group-item">
-+         {comment.text}
-+       </li>
-+     ))}
-+   </ul>
-+ )}
+```jsx
+				<ul className="list-group mt-3">
+					{hoot.comments.map((comment) => (
+						<li key={comment._id} className="list-group-item">
+							{comment.text}
+						</li>
+					))}
+				</ul>
 ```
 
----
 
 ### Result
 
+
+<img width="1920" height="1080" alt="Screenshot 2025-08-13 at 11 45 05 AM (2)" src="https://github.com/user-attachments/assets/0261044f-edc6-499f-ac55-7c61f5bebf3f" />
+
+
+### Bonus - edit the `CommentForm` component
+
+```jsx
+				<ul className="list-group mt-3">
+					{hoot.comments.map((comment) => (
+						<li key={comment._id} className="list-group-item">
+							{comment.text}
+						</li>
+					))}
+				</ul>
+```
 
 
