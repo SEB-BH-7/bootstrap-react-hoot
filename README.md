@@ -1,4 +1,8 @@
-# Adding Bootstrap to a Vite/React App
+<h1>
+  <span class="prefix">Front-End UI</span>
+  <br />
+  <span class="headline">Add Bootstrap to Vite + Style a Detail Page</span>
+</h1>
 
 To include Bootstrap in your Vite/React project, install it via npm:
 
@@ -9,95 +13,49 @@ npm install bootstrap
 Then, modify `main.jsx` to import Bootstrap’s styles and scripts:
 
 ```jsx
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import 'bootstrap/dist/css/bootstrap.min.css' // Import Bootstrap styles
-import 'bootstrap' // Import Bootstrap scripts
+import { BrowserRouter } from 'react-router-dom'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+// Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'  // styles
+import 'bootstrap'                             // JS (for components that need it)    
+
+import './index.css'
+import App from './App.jsx'
+
+
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>,
 )
 ```
 
----
 
-### Adding Bootstrap Icons
 
-To add [Bootstrap Icons](https://icons.getbootstrap.com/), install the package:
+## Sample Modifications
 
-```sh
-npm install bootstrap-icons
-```
+### Add a spinner where you show “Loading…”. For example, in any component:
 
-Then, modify `main.jsx` to include the icons:
+   ```jsx
+    // HootDetails.jsx
+   
+    // if (!hoot) return <main>Loading...</main>
+    if (!hoot) {
+    return (
+      <main className="d-flex justify-content-center align-items-center" style={{ minHeight: '40vh' }}>
+        <div className="spinner-border" role="status" aria-label="loading"></div>
+      </main>
+    )
+    }
+   ```
 
-```jsx
-import 'bootstrap-icons/font/bootstrap-icons.css' // Import Bootstrap Icons
-```
+* Replace any plain “Loading…” text in your app with the spinner above.
 
-So your final `main.jsx` should look like:
 
-```jsx
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import 'bootstrap/dist/css/bootstrap.min.css' // Import Bootstrap styles
-import 'bootstrap' // Import Bootstrap scripts
-import 'bootstrap-icons/font/bootstrap-icons.css' // Import Bootstrap Icons
+<img width="1920" height="1080" alt="Screenshot 2025-08-13 at 11 02 42 AM (2)" src="https://github.com/user-attachments/assets/b4739707-ac91-44a2-9c58-d23256cca8aa" />
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
-```
-
-Wherever you want to use an icon, simply copy and paste the `<i>` font tag from the [icon library](https://icons.getbootstrap.com/) into your component.
-
-```html
-<i class="bi bi-arrow-through-heart-fill"></i>
-```
-
----
-
-### Overriding Bootstrap with Custom SCSS
-
-If you want to customize Bootstrap (e.g., change the `$primary` color), you need to use SCSS. First, install `sass`:
-
-```sh
-npm install sass
-```
-
-Then, create a `src/styles/custom.scss` file and override Bootstrap variables **before** importing Bootstrap:
-
-```scss
-// src/styles/custom.scss
-
-// Override Bootstrap variables before importing Bootstrap
-$primary: #ff5733; // Example: Change primary color to orange-red
-
-// Import Bootstrap after variables
-@import 'bootstrap/scss/bootstrap';
-```
-
-Finally, update `main.jsx` to import the custom SCSS file instead of the default Bootstrap CSS:
-
-```jsx
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './styles/custom.scss' // Import customized Bootstrap styles
-import 'bootstrap' // Import Bootstrap scripts
-import 'bootstrap-icons/font/bootstrap-icons.css' // Import Bootstrap Icons
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
-```
-
-Now, your app will use the customized Bootstrap theme with Bootstrap Icons included.
