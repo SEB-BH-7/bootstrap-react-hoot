@@ -59,3 +59,141 @@ createRoot(document.getElementById('root')).render(
 
 <img width="1920" height="1080" alt="Screenshot 2025-08-13 at 11 02 42 AM (2)" src="https://github.com/user-attachments/assets/b4739707-ac91-44a2-9c58-d23256cca8aa" />
 
+
+### Add a safe owner check (optional chaining `?` prevents crashes)
+
+```jsx
+const isOwner = hoot.author?._id === props.user?._id
+```
+
+
+### Wrap the html in a Bootstrap layout (container → card → card-body)
+
+```jsx
+  return (
+  /* start bootstrap channges */
+    <main className="container my-5">
+      <div className="card shadow-sm">
+        <div class="card-body">
+  {/*  end bootstrap changes */}
+
+      <header>
+        <p>{hoot.category.toUpperCase()}</p>
+        <h1>{hoot.title}</h1>
+        <p>
+          {hoot.author.username} posted on {new Date(hoot.createdAt).toLocaleDateString()}
+        </p>
+        {/* DELETE BUTTON */}
+        {hoot.author._id === props.user._id && (
+          <>
+            <Link to={`/hoots/${hootId}/edit`}>Edit</Link>
+            <button onClick={() => props.handleDeleteHoot(hootId)}>Delete</button>
+          </>
+        )}
+      </header>
+      <h2>Comments</h2>
+      <CommentForm handleAddComment={handleAddComment} />
+       {!hoot.comments.length && <p>There are no comments.</p>}
+
+        {hoot.comments.map((comment) => (
+          <p key={comment._id}>{comment.text}</p>
+        ))}
+        
+          </div>
+        </div>
+    </main>
+  )
+```
+
+And close these wrappers at the end:
+
+```diff
+-   </main>
++       </div>
++     </div>
++   </main>
+```
+
+---
+
+### Style the header/meta
+
+```diff
+- <header>
+-   <p>{hoot.category.toUpperCase()}</p>
+-   <h1>{hoot.title}</h1>
+-   <p>
+-     {hoot.author.username} posted on {new Date(hoot.createdAt).toLocaleDateString()}
+-   </p>
++ <header>
++   <p className="text-muted mb-1">{hoot.category?.toUpperCase()}</p>
++   <h1 className="card-title">{hoot.title}</h1>
++   <p className="text-secondary mb-3">
++     {hoot.author.username} • {new Date(hoot.createdAt).toLocaleDateString()}
++   </p>
+```
+
+---
+
+### Replace edit/delete block with Bootstrap buttons
+
+```diff
+- {hoot.author._id === props.user._id && (
+-   <>
+-     <Link to={`/hoots/${hootId}/edit`}>Edit</Link>
+-     <button onClick={() => props.handleDeleteHoot(hootId)}>Delete</button>
+-   </>
+- )}
++ {isOwner && (
++   <div className="d-flex gap-2 mb-4">
++     <Link to={`/hoots/${hootId}/edit`} className="btn btn-warning btn-sm">Edit</Link>
++     <button
++       className="btn btn-danger btn-sm"
++       onClick={() => props.handleDeleteHoot(hootId)}
++     >
++       Delete
++     </button>
++   </div>
++ )}
+```
+
+---
+
+### Keep the form; add a clearer section title
+
+```diff
+- <h2>Comments</h2>
++ <h4 className="mb-3">Comments</h4>
+  <CommentForm handleAddComment={handleAddComment} />
+```
+
+---
+
+### Improve empty state + render comments as a list group
+
+```diff
+- {!hoot.comments.length && <p>There are no comments.</p>}
+-
+- {hoot.comments.map((comment) => (
+-   <p key={comment._id}>{comment.text}</p>
+- ))}
++ {!hoot.comments?.length && (
++   <p className="text-muted mt-3">There are no comments.</p>
++ )}
++ {hoot.comments?.length > 0 && (
++   <ul className="list-group mt-3">
++     {hoot.comments.map((comment) => (
++       <li key={comment._id} className="list-group-item">
++         {comment.text}
++       </li>
++     ))}
++   </ul>
++ )}
+```
+
+---
+
+### Result
+
+
+
