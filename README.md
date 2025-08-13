@@ -39,7 +39,7 @@ createRoot(document.getElementById('root')).render(
 
 ## Sample Modifications
 
-### Add a spinner where you show “Loading…”. For example, in any component:
+### Add a spinner where you show “Loading…”:
 
    ```jsx
     // HootDetails.jsx
