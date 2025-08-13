@@ -124,7 +124,6 @@ Add new classNames to the `<p>` tags and `<h1>` tag:
 
 <img width="612" height="234" alt="Screenshot 2025-08-13 at 11 30 54 AM" src="https://github.com/user-attachments/assets/109fe289-678c-4857-81f4-561cdcdb5d38" />
 
----
 
 ### Add Bootstrap button classes to the Edit and Delete
 
@@ -140,17 +139,18 @@ Wrap the `<Link>` and `<button>` in a new `<div>` - give them all the new classN
 
 <img width="828" height="328" alt="Screenshot 2025-08-13 at 11 35 45 AM" src="https://github.com/user-attachments/assets/4f0cb234-768a-48d2-8a5a-5fdd9cbe88fd" />
 
----
 
-### Keep the form; add a clearer section title
+### Modify the `Comments` title and the "There are no comments." section
 
-```diff
-- <h2>Comments</h2>
-+ <h4 className="mb-3">Comments</h4>
-  <CommentForm handleAddComment={handleAddComment} />
+```jsx
+      </header>
+      <h4 className="mb-3">Comments</h4>
+      <CommentForm handleAddComment={handleAddComment} />
+       {!hoot.comments?.length && <p className="text-muted mt-3">There are no comments.</p>}
 ```
 
----
+<img width="906" height="712" alt="Screenshot 2025-08-13 at 11 40 18 AM" src="https://github.com/user-attachments/assets/5f91adec-9eaa-429d-9590-d86e9f64b94b" />
+
 
 ### Improve empty state + render comments as a list group
 
@@ -160,6 +160,7 @@ Wrap the `<Link>` and `<button>` in a new `<div>` - give them all the new classN
 - {hoot.comments.map((comment) => (
 -   <p key={comment._id}>{comment.text}</p>
 - ))}
+
 + {!hoot.comments?.length && (
 +   <p className="text-muted mt-3">There are no comments.</p>
 + )}
