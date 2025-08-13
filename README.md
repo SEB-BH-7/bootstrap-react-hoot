@@ -59,14 +59,6 @@ createRoot(document.getElementById('root')).render(
 
 <img width="1920" height="1080" alt="Screenshot 2025-08-13 at 11 02 42 AM (2)" src="https://github.com/user-attachments/assets/b4739707-ac91-44a2-9c58-d23256cca8aa" />
 
-
-### Add a safe owner check (optional chaining `?` prevents crashes)
-
-```jsx
-const isOwner = hoot.author?._id === props.user?._id
-```
-
-
 ### Wrap the html in a Bootstrap layout (container → card → card-body)
 
 ```jsx
