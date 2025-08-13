@@ -171,16 +171,35 @@ Wrap the `<Link>` and `<button>` in a new `<div>` - give them all the new classN
 <img width="1920" height="1080" alt="Screenshot 2025-08-13 at 11 45 05 AM (2)" src="https://github.com/user-attachments/assets/0261044f-edc6-499f-ac55-7c61f5bebf3f" />
 
 
-### Bonus - edit the `CommentForm` component
+### Bonus - replace the form inside `CommentForm` component
 
 ```jsx
-				<ul className="list-group mt-3">
-					{hoot.comments.map((comment) => (
-						<li key={comment._id} className="list-group-item">
-							{comment.text}
-						</li>
-					))}
-				</ul>
+// CommentForm.jsx
+
+    <form onSubmit={handleSubmit} className="mt-3">
+      <div className="mb-3">
+        <label htmlFor="text-input" className="form-label">Add a comment</label>
+        <textarea
+          required
+          id="text-input"
+          name="text"
+          className="form-control"
+          rows={3}
+          placeholder="Write your comment…"
+          value={formData.text}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="d-flex justify-content-center">
+        <button type="submit" className="btn btn-primary">
+          Post Comment
+        </button>
+      </div>
+    </form>
 ```
+
+<img width="1920" height="1080" alt="Screenshot 2025-08-13 at 11 48 46 AM (2)" src="https://github.com/user-attachments/assets/f46ab3f3-9dc4-4060-b5aa-621471cbbca2" />
+
 
 
