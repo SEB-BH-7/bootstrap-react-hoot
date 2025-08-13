@@ -75,7 +75,7 @@ const isOwner = hoot.author?._id === props.user?._id
     <main className="container my-5">
       <div className="card shadow-sm">
         <div class="card-body">
-  {/*  end bootstrap changes */}
+  {/*  end bootstrap changes - CLOSE YOUR <div> TAGS DOWN BELOW! */}
 
       <header>
         <p>{hoot.category.toUpperCase()}</p>
@@ -98,21 +98,16 @@ const isOwner = hoot.author?._id === props.user?._id
         {hoot.comments.map((comment) => (
           <p key={comment._id}>{comment.text}</p>
         ))}
-        
+
+  {/*  CLOSE YOUR <div> TAGS HERE! */}
           </div>
         </div>
     </main>
   )
 ```
 
-And close these wrappers at the end:
+<img width="1920" height="1080" alt="Screenshot 2025-08-13 at 11 26 46 AM (2)" src="https://github.com/user-attachments/assets/e6eefea1-fa93-4276-baf6-100342a16490" />
 
-```diff
--   </main>
-+       </div>
-+     </div>
-+   </main>
-```
 
 ---
 
